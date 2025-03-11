@@ -1,0 +1,7 @@
+.ipynb_checkpoints
+llama.cpp
+outputs
+unsloth_compiled_cache
+wandb
+*.gguf
+DeepSeek-R1-Distill-Llama-8B-unsloth-bnb-4bit-Medical-COT
