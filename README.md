@@ -193,3 +193,114 @@ $ ollama list
 NAME                                                                              ID              SIZE      MODIFIED     
 hf.co/rwibawa/DeepSeek-R1-Distill-Llama-8B-unsloth-bnb-4bit-Medical-COT:latest    f64fd8a4dc04    8.5 GB    11 hours ago    
 ```
+
+## 3. `llama.cpp`
+### 3.1. Install `cmake`
+```shell
+$ cd ~/Downloads/
+$ sudo apt-get install build-essential libssl-dev
+$ wget https://github.com/Kitware/CMake/releases/download/v3.31.6/cmake-3.31.6.tar.gz
+$ tar xvfz cmake-3.31.6.tar.gz
+$ cd cmake-3.31.6/
+$ ./bootstrap 
+$ gmake
+$ sudo gmake install
+
+$ cmake --help
+```
+
+### 3.2. Build `llama.cpp` using `cmake`:
+* [Build llama.cpp using CMake](https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md)
+
+```shell
+# cd llama.cpp/
+$ cmake -B build
+$ cmake --build build --config Release
+$ ll build/bin/
+total 68M
+-rwxr-xr-x  1 ryan ryan 1.8M Mar 12 07:15 llama-batched*
+-rwxr-xr-x  1 ryan ryan 1.8M Mar 12 07:15 llama-batched-bench*
+-rwxr-xr-x  1 ryan ryan 503K Mar 12 07:16 llama-bench*
+-rwxr-xr-x  1 ryan ryan 1.9M Mar 12 07:16 llama-cli*
+-rwxr-xr-x  1 ryan ryan 373K Mar 12 07:17 llama-convert-llama2c-to-ggml*
+-rwxr-xr-x  1 ryan ryan 1.9M Mar 12 07:17 llama-cvector-generator*
+-rwxr-xr-x  1 ryan ryan 1.9M Mar 12 07:15 llama-embedding*
+-rwxr-xr-x  1 ryan ryan 1.8M Mar 12 07:16 llama-eval-callback*
+-rwxr-xr-x  1 ryan ryan 1.9M Mar 12 07:17 llama-export-lora*
+-rwxr-xr-x  1 ryan ryan  27K Mar 12 07:16 llama-gbnf-validator*
+-rwxr-xr-x  1 ryan ryan 1.8M Mar 12 07:17 llama-gen-docs*
+-rwxr-xr-x  1 ryan ryan  28K Mar 12 07:16 llama-gguf*
+-rwxr-xr-x  1 ryan ryan 102K Mar 12 07:16 llama-gguf-hash*
+-rwxr-xr-x  1 ryan ryan  47K Mar 12 07:16 llama-gguf-split*
+-rwxr-xr-x  1 ryan ryan 1.9M Mar 12 07:16 llama-gritlm*
+-rwxr-xr-x  1 ryan ryan 1.9M Mar 12 07:16 llama-imatrix*
+-rwxr-xr-x  1 ryan ryan 1.9M Mar 12 07:16 llama-infill*
+-rwxr-xr-x  1 ryan ryan 2.1M Mar 12 07:17 llama-llava-cli*
+-rwxr-xr-x  1 ryan ryan 494K Mar 12 07:17 llama-llava-clip-quantize-cli*
+-rwxr-xr-x  1 ryan ryan 1.9M Mar 12 07:16 llama-lookahead*
+-rwxr-xr-x  1 ryan ryan 1.9M Mar 12 07:16 llama-lookup*
+-rwxr-xr-x  1 ryan ryan 1.9M Mar 12 07:16 llama-lookup-create*
+-rwxr-xr-x  1 ryan ryan  69K Mar 12 07:16 llama-lookup-merge*
+-rwxr-xr-x  1 ryan ryan 1.9M Mar 12 07:16 llama-lookup-stats*
+-rwxr-xr-x  1 ryan ryan 2.1M Mar 12 07:17 llama-minicpmv-cli*
+-rwxr-xr-x  1 ryan ryan 1.9M Mar 12 07:16 llama-parallel*
+-rwxr-xr-x  1 ryan ryan 1.8M Mar 12 07:16 llama-passkey*
+-rwxr-xr-x  1 ryan ryan 1.9M Mar 12 07:16 llama-perplexity*
+-rwxr-xr-x  1 ryan ryan  21K Mar 12 07:17 llama-q8dot*
+-rwxr-xr-x  1 ryan ryan 366K Mar 12 07:16 llama-quantize*
+-rwxr-xr-x  1 ryan ryan 213K Mar 12 07:17 llama-quantize-stats*
+-rwxr-xr-x  1 ryan ryan 2.1M Mar 12 07:17 llama-qwen2vl-cli*
+-rwxr-xr-x  1 ryan ryan 1.9M Mar 12 07:16 llama-retrieval*
+-rwxr-xr-x  1 ryan ryan 1.6M Mar 12 07:17 llama-run*
+-rwxr-xr-x  1 ryan ryan 1.9M Mar 12 07:17 llama-save-load-state*
+-rwxr-xr-x  1 ryan ryan 3.8M Mar 12 07:17 llama-server*
+-rwxr-xr-x  1 ryan ryan  27K Mar 12 07:17 llama-simple*
+-rwxr-xr-x  1 ryan ryan  32K Mar 12 07:17 llama-simple-chat*
+-rwxr-xr-x  1 ryan ryan 1.9M Mar 12 07:17 llama-speculative*
+-rwxr-xr-x  1 ryan ryan 1.9M Mar 12 07:17 llama-speculative-simple*
+-rwxr-xr-x  1 ryan ryan 344K Mar 12 07:17 llama-tokenize*
+-rwxr-xr-x  1 ryan ryan 1.9M Mar 12 07:17 llama-tts*
+-rwxr-xr-x  1 ryan ryan  22K Mar 12 07:17 llama-vdot*
+-rwxr-xr-x  1 ryan ryan 1.9M Mar 12 07:15 test-arg-parser*
+-rwxr-xr-x  1 ryan ryan  18K Mar 12 07:15 test-autorelease*
+-rwxr-xr-x  1 ryan ryan 586K Mar 12 07:15 test-backend-ops*
+-rwxr-xr-x  1 ryan ryan  22K Mar 12 07:15 test-barrier*
+-rwxr-xr-x  1 ryan ryan  16K Mar 12 07:15 test-c*
+-rwxr-xr-x  1 ryan ryan 1.6M Mar 12 07:15 test-chat*
+-rwxr-xr-x  1 ryan ryan 1.5M Mar 12 07:15 test-chat-template*
+-rwxr-xr-x  1 ryan ryan  76K Mar 12 07:15 test-gguf*
+-rwxr-xr-x  1 ryan ryan 726K Mar 12 07:15 test-grammar-integration*
+-rwxr-xr-x  1 ryan ryan  41K Mar 12 07:15 test-grammar-parser*
+-rwxr-xr-x  1 ryan ryan 719K Mar 12 07:15 test-json-schema-to-grammar*
+-rwxr-xr-x  1 ryan ryan  46K Mar 12 07:15 test-llama-grammar*
+-rwxr-xr-x  1 ryan ryan  34K Mar 12 07:15 test-log*
+-rwxr-xr-x  1 ryan ryan  17K Mar 12 07:15 test-model-load-cancel*
+-rwxr-xr-x  1 ryan ryan  18K Mar 12 07:15 test-quantize-fns*
+-rwxr-xr-x  1 ryan ryan  41K Mar 12 07:15 test-quantize-perf*
+-rwxr-xr-x  1 ryan ryan  21K Mar 12 07:15 test-rope*
+-rwxr-xr-x  1 ryan ryan  50K Mar 12 07:15 test-sampling*
+-rwxr-xr-x  1 ryan ryan 355K Mar 12 07:15 test-tokenizer-0*
+-rwxr-xr-x  1 ryan ryan 337K Mar 12 07:15 test-tokenizer-1-bpe*
+-rwxr-xr-x  1 ryan ryan 337K Mar 12 07:15 test-tokenizer-1-spm*
+```
+
+### 3.3. Converting Safetensors to GGUF model
+```shell
+$ python llama.cpp/convert_hf_to_gguf.py \
+  DeepSeek-R1-Medical-COT/ \
+  --outfile llama-3-8b-chat-doctor.gguf \
+  --outtype f16
+```
+
+### 3.4. Quantizing the GGUF Model
+```shell
+$ ./llama.cpp/build/bin/llama-quantize \
+  llama-3-8b-chat-doctor.gguf \
+  llama-3-8b-chat-doctor-Q4_K_M.gguf \
+  Q4_K_M
+llama_model_quantize_impl: model size  = 15317.02 MB
+llama_model_quantize_impl: quant size  =  4685.30 MB
+
+main: quantize time = 525046.75 ms
+main:    total time = 525046.75 ms
+```
